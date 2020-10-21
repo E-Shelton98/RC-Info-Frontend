@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Display = (props) => {
+    console.log('This is Display Props: ',props)
 
     const loaded = () => (
         <div style={{ textAlign: 'center' }}>

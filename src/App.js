@@ -26,20 +26,24 @@ function App() {
 	//STATE TO HOLD SELECTED RC VEHICLE
 	const [selectedVehicle, setSelectedVehicle] = useState(emptyVehicle);
 
+
 	//FUNCTION TO FETCH COMPANIES
 	const getCompanies = () => {
-		fetch(url + '/rc_company')
-			.then((response) => response.json)
+		fetch(url + '/rc_api')
+			.then((response) => response.json())
 			.then((data) => {
+				console.log('This is data: ', data);
 				setRC_Companies(data);
+				
 			});
 	};
 
 	//FUNCTION TO FETCH VEHICLES
 	const getVehicles = () => {
 		fetch(url + '/rc_vehicle')
-			.then((response) => response.json)
+			.then((response) => response.json())
 			.then((data) => {
+				console.log("This is vehicles: ", data)
 				setRC_Vehicles(data);
 			});
 	};
