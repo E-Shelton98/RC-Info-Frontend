@@ -1,5 +1,5 @@
 //import React
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 //import App stylesheet
 import './App.css';
 //Import React Router Items
@@ -12,18 +12,19 @@ import Form from './Form';
 function App() {
 	//URL VARIABLE
 	const url = 'https://rc-app-backend.herokuapp.com';
-	//STATE TO HOLD RC VEHICLES
-	const [rc_Vehicles, setRC_Vehicles] = useState([]);
-	//STATE TO HOLD RC COMPANIES
-	const [rc_Companies, setRC_Companies] = useState([]);
-	//STATE TO HOLD SELECTED RC VEHICLE
-	const [selectedVehicle, setSelectedVehicle] = useState(emptyVehicle);
 
 	//empty rc vehicle for Form
 	const emptyVehicle = {
 		name: '',
 		img: '',
 	};
+
+	//STATE TO HOLD RC VEHICLES
+	const [rc_Vehicles, setRC_Vehicles] = useState([]);
+	//STATE TO HOLD RC COMPANIES
+	const [rc_Companies, setRC_Companies] = useState([]);
+	//STATE TO HOLD SELECTED RC VEHICLE
+	const [selectedVehicle, setSelectedVehicle] = useState(emptyVehicle);
 
 	//FUNCTION TO FETCH COMPANIES
 	const getCompanies = () => {
@@ -117,8 +118,20 @@ function App() {
 							<Form
 								{...rp}
 								label='create'
-								vehicle={emptyVehicle}
+								vehicle={selectedVehicle}
 								handleSubmit={handleCreate}
+							/>
+						)}
+					/>
+					<Route
+						exact
+						path='/edit'
+						render={(rp) => (
+							<Form
+								{...rp}
+								label='update'
+								vehicle={selectedVehicle}
+								handleSubmit={handleUpdate}
 							/>
 						)}
 					/>
